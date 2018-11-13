@@ -1,0 +1,10 @@
+Package: BiocMeetup
+Type: Package
+Title: Documentation for meetup talk
+Version: 0.1.1
+Author: Shweta Gopaulakrishnan
+Maintainer: Shweta Gopaulakrishnan <reshg@channing.harvard.edu>
+Description: Markdown for meetup talk
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true

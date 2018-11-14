@@ -10,6 +10,7 @@ output:
 
 
 # Code organization
+
 # Making an R package
 
 - A package is just a directory with specific files and directory structure.
@@ -96,14 +97,16 @@ Here is a link to get more information : https://bioconductor.org/developers/how
  ![](images/namespace.png) 
 
 ## Vignette 
-- Below is an example of a NAMESPACE file from a Bioconductor package "restfulSE" 
+- A vignette is a long-form guide to your package.
+- Below is an example of a vignette file from a Bioconductor package "restfulSE" 
  [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
   ![](images/vignette.png) 
 
 - For more information : https://bioconductor.org/packages/release/bioc/vignettes/BiocStyle/inst/doc/LatexStyle2.pdf
 
 ## NEWS
-  - Example of a NEWS file from 
+- Maintain a NEWS file to keep track of changes to the code from one version to the next.
+- Example of a NEWS file from 
  ![](images/news.png) 
 
 
@@ -162,8 +165,6 @@ Guide : http://bioconductor.org/developers/how-to/unitTesting-guidelines/
 ## Testthat is a package for testing R code.
 
 - You use it to write code to test R functions and objects and make sure that they are performing as you expect.
-- The old way of doing testing... Most people used to interactively test code in the console or use print statements to make sure that things were working as expected. 
-                                  Ideally people would use R functions like stopifnot()
 
 ## Example 
 - Below is an example of a test from a Bioconductor package "restfulSE" 
@@ -215,13 +216,18 @@ It:
 
 ## Test format:
 
-from http://r-pkgs.had.co.nz/tests.html
+```{r code}
+library(stringr)
+library(testthat)
+context("String length")
 
 test_that("str_length is number of characters", {
   expect_equal(str_length("a"), 1)
   expect_equal(str_length("ab"), 2)
   expect_equal(str_length("abc"), 3)
 })
+```
+
 
 ## Run tests
 
@@ -230,6 +236,59 @@ Tests are run with test() or as part of R CMD check
 ## Glance at Bioconductor's build/check results : 
 - https://www.bioconductor.org/checkResults/3.8/bioc-LATEST/
 ![](images/results.png) 
+
+
+
+# Example of making a package using RStudio
+
+##Create a new project 
+
+![](images/newproject.png) 
+
+![](images/newpackage.png) 
+
+![](images/newdirectory.png) 
+![](images/createpackage.png) 
+
+![](images/overview.png) 
+
+
+## Make the DESCRIPTION file : 
+![](images/makedes.png) 
+
+## Add data to inst/
+![](images/inst.png) 
+
+## Add R scripts with Roxygen comments to R/
+![](images/rscript.png) 
+
+## Make the vignette
+
+- In the vignettes/ create a RMarkdown document 
+
+![](images/markdown.png) 
+![](images/markdown2.png) 
+
+- First look of RMarkdown : 
+![](images/rmarkdown3.png) 
+
+
+
+![](images/vignette2.png) 
+
+
+## Adding tests
+
+- In the test/ create a file named testthat.R 
+![](images/testthat.png) 
+
+- Create a folder testthat/ with test.R 
+![](images/testdemo.png) 
+
+## Add a NEWS file
+
+### Document, build and check (R CMD CHECK and BiocCheck !
+
 
 # References 
 

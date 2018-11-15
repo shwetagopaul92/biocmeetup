@@ -233,6 +233,8 @@ test_that("str_length is number of characters", {
 
 Tests are run with test() or as part of R CMD check
 
+## Run R CMD CHECK and BiocCheck on the package 
+
 ## Glance at Bioconductor's build/check results : 
 - https://www.bioconductor.org/checkResults/3.8/bioc-LATEST/
 ![](images/results.png) 

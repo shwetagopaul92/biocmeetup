@@ -4,8 +4,8 @@ title: 'Bioconductor meetup November 20th: Creating a Bioconductor Package - Par
 author: "Shweta Gopaulakrishnan"
 date: "11/10/2018"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 
@@ -16,19 +16,6 @@ output:
 - A package is just a directory with specific files and directory structure.
 
 - The easiest way to create a new package is using either R studio or devtools.
-
-## R Studio
-
-1. Click File then "New Project"
-2. Select "New Directory"
-3. Select "R Package"
-4. Give it a name and a location
-
-## Devtools
-
-The devtools package contains a function called "create()"
-
-create("mypack") will create a package structure called mypack in your current directory
 
 # What is in a package
 
@@ -55,7 +42,7 @@ Here's a brief overview of how an R package looks :
      The vignettes directory is where you put example rmarkdown files that will be compiled when the package is installed.
 
 - Inst directory : 
-  1. The inst directory can contain anything. In my projects, I include a subdirectory called "dataprep". 
+  1. The inst directory can contain anything. It is just a generic place where you can put stuff that will be stored in your installed package. 
   2. This directory contains all of the raw data (if possible), code to transform the data (both R and other), and session               information/checksums of all files.
   
 - Unit Tests 
@@ -85,7 +72,7 @@ Here is a link to get more information : https://bioconductor.org/developers/how
 
 ## Version Numbering 
 - Bioconductor packages need the version numbers in x.y.z format. 
-= Bioconductor has a ‘devel’ branch where new features are introduced, and release branches created twice per year. 
+- Bioconductor has a ‘devel’ branch where new features are introduced, and release branches created twice per year. 
 - Given a package with version number x.y.z,
      y should be an odd number in devel.
      y should be an even number in release. 

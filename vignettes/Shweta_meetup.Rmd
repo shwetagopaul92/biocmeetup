@@ -132,7 +132,7 @@ Here is a link to get more information : https://bioconductor.org/developers/how
 ## Documenting datasets
 - Basic tags:
  1. @format : Gives an overview of the structure of the dataset.
- 2. @source : Where you got the data from (like a \url{}).
+ 2. @source : Where you got the data from (like a url).
 - Below is an example of documenting a dataset using Roxygen from a Bioconductor package "restfulSE" 
  [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
 ![](images/data_roxy.png) 

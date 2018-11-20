@@ -44,7 +44,7 @@ Here's a brief overview of how an R package looks :
 
 - CITATION : Appropriate citations must be included in help pages and vignettes; this aspect of documentation is no different from any scientific endeavor.
 
-- Data Directory [Including Data] : The data directory is where data lives. It should be in .rda, .csv, or similar.
+- Data Directory [Including Data] : This is where you can put R objects stored in .Rda files that are intended to be used for examples. It should be in .rda, .csv, or similar.
 
 - R directory : The R directory is where R code goes. The files should end in .R
 
@@ -72,10 +72,13 @@ Here is a link to get more information : https://bioconductor.org/developers/how
   ![](images/basic_description.png) 
  - For a Bioconductor package, we add a few more fields like :  
  1. Depends - List the packages your package depends on. If you have another package and your package is really meant to be used along with that package then you might want to list it here.
- 2. Imports - This is what you should use when you want to access the contents of another package from within the code of your own package.
- 3. Suggests - This is for dependencies that are not needed in order to load and use your package. 
+ 2. Imports - This is what you should use when you want to access the contents of another package from within the code of your own package. Packages listed here must be present for your package to work.
+ 3. Suggests - This is for dependencies that are not needed in order to load and use your package.Your package can use these packages, but doesn’t require them, e.g: for example datasets. 
  4. Collate - List the ‘.R’ source files here in the order that you want them to load and R will do so.
  5. BiocViews - To describe a package in Bioconductor using a controlled vocabulary, for example if your package works with Single Cell Sequencing data, it is safe to mention "SingleCell" as a                  BiocView. 
+ 6. Enhances - Packages listed here are “enhanced” by your package. Typically, this means you provide methods for classes defined in another package (a sort of reverse Suggests).
+ 7. You can also list things that your package needs outside of R in the SystemRequirements field.
+ 8. LazyData makes it easier to access data in your package
  - Below is an example of a DESCRIPTION file from a Bioconductor package "restfulSE" 
  [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
  ![](images/description.png) 
@@ -89,7 +92,8 @@ Here is a link to get more information : https://bioconductor.org/developers/how
 - During the development of a package, authors increment the z version of the package by 1 for each GIT commit. 
 
 ## NAMESPACE 
-  - The namespace file contains regular expressions noting what functions/objects should be attached when the package is loaded. 
+  - The NAMESPACE file determines which objects that the package defines will be visible to end users and which symbols from        other packages need to be imported for the code in the package to function.
+  - It contains regular expressions noting what functions/objects should be attached when the package is loaded. 
   - This is to prevent shadowing whenever possible.
   - Below is an example of a NAMESPACE file from a Bioconductor package "restfulSE" 
  [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
@@ -97,8 +101,10 @@ Here is a link to get more information : https://bioconductor.org/developers/how
  ![](images/namespace.png) 
 
 ## Vignette 
-- A vignette is a long-form guide to your package.
-- Below is an example of a vignette file from a Bioconductor package "restfulSE" 
+  - A vignette is a long-form guide to your package.
+  - It helps explain how to use your package to new users.
+  - The ‘vignettes’ directory which is in the base directory and is used to store ‘.Rnw’ or ‘.Rmd’ files.
+  - Below is an example of a vignette file from a Bioconductor package "restfulSE" 
  [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
   ![](images/vignette.png) 
 
@@ -147,9 +153,9 @@ Here is a link to get more information : https://bioconductor.org/developers/how
 ## Documenting classes, generics and methods
 - Basic tags:
   1. @slot: Document the slots of the class.
-- Below is an example of documenting a S4 class and method using Roxygen from a Bioconductor package "restfulSE" 
- [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
-![](images/class_roxy.png) 
+- Below is an example of documenting a S4 class and method using Roxygen from a Bioconductor package "TFutils" 
+ [ https://bioconductor.org/packages/release/bioc/html/TFutils.html ]
+![](images/s4.png) 
 
 
 # Unit Tests
@@ -165,12 +171,6 @@ Guide : http://bioconductor.org/developers/how-to/unitTesting-guidelines/
 ## Testthat is a package for testing R code.
 
 - You use it to write code to test R functions and objects and make sure that they are performing as you expect.
-
-## Example 
-- Below is an example of a test from a Bioconductor package "restfulSE" 
- [ https://bioconductor.org/packages/release/bioc/html/restfulSE.html ]
-![](images/test.png) 
-
 
 ## Test Coverage 
 
@@ -211,7 +211,7 @@ devtools::use_testthat()
 It:
 
 1. Adds testthat to suggests in the DESCRIPTION
-2. Adds a direction structure in tests/
+2. Adds a directory structure in tests/
 
 
 ## Test format:
@@ -262,7 +262,7 @@ Tests are run with test() or as part of R CMD check
 ![](images/inst.png) 
 
 ## Add R scripts with Roxygen comments to R/
-![](images/rscript.png) 
+![](images/tfrscript.png) 
 
 ## Make the vignette
 

@@ -235,23 +235,22 @@ $(document).ready(function () {
 gr &lt;- GRanges(
     seqnames = Rle(c(&quot;chr1&quot;, &quot;chr2&quot;, &quot;chr1&quot;, &quot;chr3&quot;), c(1, 3, 2, 4)),
     ranges = IRanges(101:110, end = 111:120, names = head(letters, 10)),
-    strand = Rle(strand(c(&quot;-&quot;, &quot;+&quot;, &quot;*&quot;, &quot;+&quot;, &quot;-&quot;)), c(1, 2, 2, 3, 2)),
     score = 1:10,
     GC = seq(1, 0, length=10))
 gr</code></pre>
 <pre><code>## GRanges object with 10 ranges and 2 metadata columns:
 ##     seqnames    ranges strand |     score                GC
 ##        &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
-##   a     chr1   101-111      - |         1                 1
-##   b     chr2   102-112      + |         2 0.888888888888889
-##   c     chr2   103-113      + |         3 0.777777777777778
+##   a     chr1   101-111      * |         1                 1
+##   b     chr2   102-112      * |         2 0.888888888888889
+##   c     chr2   103-113      * |         3 0.777777777777778
 ##   d     chr2   104-114      * |         4 0.666666666666667
 ##   e     chr1   105-115      * |         5 0.555555555555556
-##   f     chr1   106-116      + |         6 0.444444444444444
-##   g     chr3   107-117      + |         7 0.333333333333333
-##   h     chr3   108-118      + |         8 0.222222222222222
-##   i     chr3   109-119      - |         9 0.111111111111111
-##   j     chr3   110-120      - |        10                 0
+##   f     chr1   106-116      * |         6 0.444444444444444
+##   g     chr3   107-117      * |         7 0.333333333333333
+##   h     chr3   108-118      * |         8 0.222222222222222
+##   i     chr3   109-119      * |         9 0.111111111111111
+##   j     chr3   110-120      * |        10                 0
 ##   -------
 ##   seqinfo: 3 sequences from an unspecified genome; no seqlengths</code></pre>
 <p>Here is an example of a small GenomicRange object that contains 10 ranges and some data.</p>
@@ -262,38 +261,41 @@ gr1</code></pre>
 <pre><code>## GRanges object with 5 ranges and 2 metadata columns:
 ##     seqnames    ranges strand |     score                GC
 ##        &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
-##   a     chr1   101-111      - |         1                 1
-##   c     chr2   103-113      + |         3 0.777777777777778
+##   a     chr1   101-111      * |         1                 1
+##   c     chr2   103-113      * |         3 0.777777777777778
 ##   e     chr1   105-115      * |         5 0.555555555555556
-##   g     chr3   107-117      + |         7 0.333333333333333
-##   i     chr3   109-119      - |         9 0.111111111111111
+##   g     chr3   107-117      * |         7 0.333333333333333
+##   i     chr3   109-119      * |         9 0.111111111111111
 ##   -------
 ##   seqinfo: 3 sequences from an unspecified genome; no seqlengths</code></pre>
 <pre class="r"><code>gr2</code></pre>
 <pre><code>## GRanges object with 5 ranges and 2 metadata columns:
 ##     seqnames    ranges strand |     score                GC
 ##        &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
-##   b     chr2   102-112      + |         2 0.888888888888889
+##   b     chr2   102-112      * |         2 0.888888888888889
 ##   d     chr2   104-114      * |         4 0.666666666666667
-##   f     chr1   106-116      + |         6 0.444444444444444
-##   h     chr3   108-118      + |         8 0.222222222222222
-##   j     chr3   110-120      - |        10                 0
+##   f     chr1   106-116      * |         6 0.444444444444444
+##   h     chr3   108-118      * |         8 0.222222222222222
+##   j     chr3   110-120      * |        10                 0
 ##   -------
 ##   seqinfo: 3 sequences from an unspecified genome; no seqlengths</code></pre>
 <p>We can get the overlapping regions with findOverlaps</p>
 <pre class="r"><code>ov=findOverlaps(gr1,gr2)
 ov</code></pre>
-<pre><code>## Hits object with 5 hits and 0 metadata columns:
+<pre><code>## Hits object with 8 hits and 0 metadata columns:
 ##       queryHits subjectHits
 ##       &lt;integer&gt;   &lt;integer&gt;
-##   [1]         2           1
-##   [2]         2           2
-##   [3]         3           3
-##   [4]         4           4
-##   [5]         5           5
+##   [1]         1           3
+##   [2]         2           1
+##   [3]         2           2
+##   [4]         3           3
+##   [5]         4           4
+##   [6]         4           5
+##   [7]         5           4
+##   [8]         5           5
 ##   -------
 ##   queryLength: 5 / subjectLength: 5</code></pre>
-<p>Here you can see that the first range in gr1 overlaps with the first 2 ranges in gr2.</p>
+<p>Here we see that the first range in gr1 overlaps with the third range in gr2.</p>
 </div>
 <div id="summarizedexperiments" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> SummarizedExperiments</h3>
